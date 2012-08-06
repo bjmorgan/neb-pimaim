@@ -25,7 +25,7 @@ class Configuration
 		@@nconfigs += 1
 		@@configs << self
 		@previous_kinetic_energy = 0.0
-		run_dir = $dir_prefix + @@nconfigs.to_s
+		run_dir = $dir_prefix + @number.to_s
 		@calculation = @@calculation_type.new( run_dir, self )
 	end
 
@@ -101,7 +101,7 @@ class Configuration
 
 	def set_species_from_coordinates( smass, coordinates )
 		@species = @nions.inject([]) do |array, num| 
-			array << Species.new( smass, (1..num).collect{ |n| Ion.new( smass, coordinates.shift ) } )
+			array << Species.new( smass, (1..num).collect{ |n| Ion.new( smass, coordinates.shift, @cell ) } )
 		end
 	end
 

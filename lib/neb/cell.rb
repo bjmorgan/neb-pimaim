@@ -14,7 +14,7 @@ class Cell
 		dr_orthorhombic( r1, r2 )
 	end
 
-	def dr_orthorhombic( r1, r2 )
+	def dr_orthorhombic( r1, r2 ) # apply minimum image convention to distances
 		return Vector.new( (r2 - r1).zip(@cell_lengths).collect do |dr, length|
 			dr -= length if ( dr >  length / 2.0 )
 			dr += length if ( dr < -length / 2.0 )
@@ -22,4 +22,12 @@ class Cell
 		end )
 	end
 
+	def pbc_orthorhombic( r ) # apply periodic boundary conditions
+		return Vector.new( r.zip( @cell_lengths).collect do |x, length|
+			x -= length if x > length
+			x += length if x < 0.0
+			x
+		end )
+	end
+	
 end

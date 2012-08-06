@@ -54,7 +54,7 @@ def set_options
 		end
 
 		options[:restart_calculation] = false
-		opts.on( '-r', '--resart-calculation', "Restart a calculation using configurations in \'image\' directories (NOT IMPLEMENTED)" ) do
+		opts.on( '-r', '--restart-calculation', "Restart a calculation using configurations in \'image\' directories (NOT IMPLEMENTED)" ) do
 			options[:resart_calculation] = true
 		end
 
